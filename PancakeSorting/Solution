@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<int> pancakeSort(vector<int>& arr) {
+        vector<int> pancake;
+        vector<int> temp =  arr;
+        vector<int>::iterator itr = arr.begin();
+        stable_sort(temp.begin(),temp.end());
+        if(arr == temp){
+            return pancake;
+        }
+
+int roof = arr.size();
+int k=arr.size()-1;
+       while(true){
+            int max = *max_element(arr.begin(),arr.begin()+roof);
+            auto loc = find(arr.begin(),arr.begin()+roof,max);
+            int index = loc - arr.begin() +1;
+            reverse(arr.begin(),arr.begin()+index);
+            pancake.push_back(index);
+            reverse(arr.begin(),arr.begin()+roof);
+            pancake.push_back(roof);
+            roof--;
+            if(arr==temp)
+                break;
+        }
+         return pancake;
+    }
+};
