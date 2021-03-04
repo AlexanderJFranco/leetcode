@@ -1,0 +1,38 @@
+class Solution {
+
+
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> merged;
+        double median;
+        vector<int>::iterator itr;
+        for(int i = 0; i< nums1.size(); i++){
+            merged.push_back(nums1[i]);
+        }
+        for(int j = 0; j<nums2.size(); j++){
+            merged.push_back(nums2[j]);
+            
+        }
+        
+        stable_sort(merged.begin(),merged.end());
+        //If the arrays are not supposed to include duplicates implement commented lines
+        //itr = unique(merged.begin(),merged.end());
+        //merged.resize(distance(merged.begin(),itr));
+
+        if(merged.size()%2==0){
+        double t1 = merged[(merged.size()/2)-1];
+        double t2 = merged[(merged.size()/2)];
+        t1 += t2;
+        t1/=2;
+        median = t1;
+
+        }
+        else{
+         median = merged[(merged.size()/2)];
+
+        }
+        
+        return median;
+
+    }
+};
