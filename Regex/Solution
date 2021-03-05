@@ -1,0 +1,53 @@
+class Solution {
+public:
+    bool isMatch(string s, string p) {
+        int si=0;
+        int pi=0;
+     while(true){
+         if(p.find('*')>p.length()&&p.find('.')>p.length()){
+             if(p.compare(s)==0){
+                 return true;
+             }
+             else
+                 return false;
+         }
+         
+         if(p[pi+1]=='*'&&p[pi]!='.'){
+             while(true){
+                 if(s[si]==p[pi])
+                     si++;
+                 else
+                     break;    
+             }
+             pi+=2;
+         }//if
+         else if(p[pi+1]=='*'&&p[pi]=='.'){
+             while(true){
+            si++;
+            if(si==s.length()){
+             return true;
+         }
+            if(s[si]!=s[si-1]&&s[si]==p[pi+2]){
+                pi+=2;
+                break;
+            }
+             }//while
+         }
+        else if(p[pi]==s[si]){
+            pi++;
+            si++;
+        }
+         else if(p[pi]=='.'){
+             pi++;
+             si++;
+         }
+         
+         if(si==s.length()){
+             return true;
+         }
+ 
+     }
+              
+    return false;
+    }
+};
