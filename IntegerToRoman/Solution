@@ -1,0 +1,60 @@
+class Solution {
+public:
+    string intToRoman(int num) {
+        int hold = num;
+        string str ="";
+        while((hold/1000)>=1){
+            str+="M";
+            hold-=1000;
+        }
+        while(hold/900>=1){
+            str+="CM";
+            hold-=900;
+        }
+        while(hold/500>=1){
+            str+="D";
+            hold-=500;
+        }
+        while(hold/400>=1){
+            str+="CD";
+            hold-=400;
+        }
+        while(hold/100>=1){
+            str+="C";
+            hold-=100;
+        }
+        while(hold/90>=1){
+            str+="XC";
+            hold-=90;
+        }
+        while(hold/50>=1){
+            str+="L";
+            hold-=50;
+        }
+        while(hold/40>=1){
+            str+="XL";
+            hold-=40;
+        }
+        while(hold/10>=1){
+            str+="X";
+            hold-=10;
+        }
+        while(hold/9>=1){
+            str+="IX";
+            hold-=9;
+        }
+        while(hold/5>=1){
+            str+="V";
+            hold-=5;
+        }
+        while(hold/4>=1){
+            str+="IV";
+            hold-=4;
+        }
+        while(hold/1>=1){
+            str+="I";
+            hold-=1;
+        }
+                return str;
+    }
+};
