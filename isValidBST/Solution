@@ -1,0 +1,21 @@
+
+class Solution {
+    bool Tool(TreeNode * root, long leftbound, long rightbound ){
+        bool lgood;
+        bool rgood;
+        if(root == nullptr )
+            return true;
+        if(root->val>leftbound && root->val < rightbound){
+            lgood = Tool(root->left,leftbound, root->val);
+            rgood = Tool(root->right,root->val,rightbound);
+        if(lgood&&rgood)
+            return true;
+        }
+            return false;
+     
+    }
+public:
+    bool isValidBST(TreeNode* root) {
+        return Tool(root, LLONG_MIN,LLONG_MAX);
+    }
+};
