@@ -1,0 +1,108 @@
+class Solution {
+    bool helper(vector<char>& cell){
+           vector<char> temp  =  cell;
+           vector<char> temp2  =  cell;
+        sort(temp.begin(),temp.end());
+        sort(temp2.begin(),temp2.end());
+            temp2.erase(std::remove(temp2.begin(), temp2.end(), '.'), temp2.end());
+            temp.erase(std::remove(temp.begin(), temp.end(), '.'), temp.end());
+            temp.erase( unique( temp.begin(), temp.end() ), temp.end() );
+
+
+            if(temp==temp2){
+                return true;
+            }
+        return false;
+    }
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        vector<char> empty;
+        vector<vector<char>> cells;
+                vector<char> c1 = empty;
+                vector<char> c2 = empty;
+                vector<char> c3 = empty;
+                vector<char> c4 = empty;
+                vector<char> c5 = empty;
+                vector<char> c6 = empty;
+                vector<char> c7 = empty;
+                vector<char> c8 = empty;
+                vector<char> c0 = empty;
+
+        for(int i =0; i<board.size();i++){
+           vector<char> temp  =  board[i];
+           vector<char> temp2  =  board[i];
+            
+        sort(temp.begin(),temp.end());
+        sort(temp2.begin(),temp2.end());
+            temp2.erase(std::remove(temp2.begin(), temp2.end(), '.'), temp2.end());
+            temp.erase(std::remove(temp.begin(), temp.end(), '.'), temp.end());
+            temp.erase( unique( temp.begin(), temp.end() ), temp.end() );
+
+            if(temp!=temp2){
+                return false;
+            }
+        }
+        
+        //Check for column repeats
+        int col =0;
+        for(int i =0; i< board.size();i++){
+            vector<char> temp = empty;
+            vector<char> temp2  = empty;
+            for(int j =0; j<board.size();j++){
+                temp.push_back(board[j][i]);
+            }
+            temp2 = temp;
+        sort(temp.begin(),temp.end());
+        sort(temp2.begin(),temp2.end());
+            temp2.erase(std::remove(temp2.begin(), temp2.end(), '.'), temp2.end());
+            temp.erase(std::remove(temp.begin(), temp.end(), '.'), temp.end());
+            temp.erase( unique( temp.begin(), temp.end() ), temp.end() );
+
+            if(temp!=temp2){
+                return false;
+            }
+        }
+        
+        
+    //Check Cells
+
+ for(int i =0; i< board.size();i++){
+            for(int j =0 ; j < board.size(); j++){
+
+                if(i<3&&j<3)
+                    c0.push_back(board[i][j]);
+                if(i<3&&j>=3&&j<6)
+                    c1.push_back(board[i][j]);
+                if(i<3&&j>=6&&j<9)
+                    c2.push_back(board[i][j]);
+                
+                if(i>=3&&i<6&&j<3)
+                    c3.push_back(board[i][j]);
+                if(i>=3&&i<6&&j>=3&&j<6)
+                    c4.push_back(board[i][j]);
+                if(i>=3&&i<6&&j>=6&&j<9)
+                    c5.push_back(board[i][j]);
+                
+                if(i>=6&&j<3)
+                    c6.push_back(board[i][j]);
+                if(i>=6&&j<6&&j>=3)
+                    c7.push_back(board[i][j]);
+                if(i>=6&&j>=6&&j<9)
+                    c8.push_back(board[i][j]);
+               
+            }
+     
+     
+            
+        }         
+
+     if(helper(c0) == true && helper(c1) == true &&helper(c2) == true &&helper(c3) == true &&helper(c4) == true &&helper(c5) == true &&helper(c6) == true &&helper(c7) == true &&helper(c8) == true )
+         return true;
+            
+        
+            
+            
+        
+        return false;
+    }
+};
