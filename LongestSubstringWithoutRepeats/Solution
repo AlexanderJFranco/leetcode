@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+      int length = 0;
+      string longest="";
+        string temp="";
+        
+        for(int i = 0; i< s.length();i++){     
+            temp+=s[i];
+            
+            for(int j =i+1;j<s.length();j++){
+                size_t find = temp.find(s[j]);
+                
+                if(find== string::npos){
+                    temp+=s[j];
+                }
+                if(find!= string::npos){
+                    break;
+                }
+                }
+            if(temp.length()>longest.length()){
+                longest.assign(temp);
+                temp.assign("");
+            }
+            else{
+                temp.assign("");
+            }
+                
+            
+        }
+        cout<<longest<<endl;
+        return longest.length();
+    }
+};
