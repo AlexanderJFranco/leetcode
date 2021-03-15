@@ -1,0 +1,62 @@
+class Solution {
+public:
+    
+    int helper(char c){
+
+        switch (c){
+        case '0':
+                return 0;
+        case '1':
+                return 1;
+        case '2':
+                return 2;
+        case '3':
+                return 3;
+        case '4':
+                return 4;
+        case '5':
+                return 5;
+        case '6':
+                return 6;
+        case '7':
+                return 7;
+        case '8':
+                return 8;
+        case '9':
+                return 9;
+                
+    }
+        return 0;
+    }
+    
+    int myAtoi(string s) {
+        string clean = "";
+        bool start = false;
+        int result=0;
+        int temp;
+        int dec =0;
+       for(int i=0; i< s.length(); i++){
+            if(isdigit(s[i])||(s[i]=='-'&&isdigit(s[i+1]))||(s[i]=='+'&&isdigit(s[i+1]))){
+                clean+=s[i];
+                start = true;
+            }
+           else if(start == false && isspace(s[i]))
+               continue;
+           else
+               break;
+           }
+       
+        
+        
+        for(int i=clean.length()-1; i>=0;i--){
+           if(isdigit(clean[i])){
+               temp = helper(clean[i]);
+               result+=pow(10,dec)*temp;
+               dec++;
+           }
+        }
+        if(clean[0]=='-')
+            result=result*-1;
+        return result;
+    }
+};
