@@ -1,0 +1,41 @@
+class Solution {
+    public String convert(String s, int numRows) {
+        char[][] arr = new char [numRows][s.length()-1];
+        int currrow = 0;
+        int currcol = 0;
+        int count = 0;
+        String result="";
+        if(s.length()==1||numRows==1)
+            return s;
+        while(count<s.length()){
+        if(currrow !=0) {
+            currrow-- ;
+            if(count<s.length()&&currrow!=0){
+            arr[currrow][currcol]=s.charAt(count);
+             count++;
+            }
+            
+         }            
+            if(currrow == 0){
+            System.out.println("HIT");
+            for( int i=0; i<numRows;i++){
+                if(count<s.length()){
+                arr[currrow][currcol] = s.charAt(count);
+                count++; 
+                }
+
+                currrow++;
+            }
+               currrow--;
+        }
+         currcol++;   
+        }
+        for(int i = 0; i<numRows; i++){
+           for(int j=0; j< s.length()-1;j++){
+               if(Character.isAlphabetic(arr[i][j])|| arr[i][j]=='.'|| arr[i][j]==',')
+               result+= arr[i][j];
+            }
+        }
+        return result;
+    }
+}
