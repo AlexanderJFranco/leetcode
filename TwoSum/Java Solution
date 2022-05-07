@@ -1,21 +1,27 @@
-import java.util.HashMap;
-import java.io.*;
-import java.util.*;
+//Time complexity : O(n)
+//Reasoning : The algorithm will only ever execute for the entire extent of the array at most.
+//each element within the array has Time Complexity O(1) for 'n' elements.
+//Space Complexity : O(n)
+//Reasoning : The function would at most allocate n (size of hash table) amount of space. 
 
+import java.util.HashMap;
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        HashMap<Integer,Integer> arr = new HashMap<Integer, Integer>();
+        //Declarations
+        HashMap<Integer,Integer> Pairs = new HashMap<Integer,Integer>();
+        int[] results = new int[2];
         
-        for(int i = 0 ; i < nums.length ; i++ ){
-            int x = nums[i];
-            
-            if(arr.get(x) != null && i > 0){
-                int[] result = new int [] {arr.get(x),i};
-                return result;
+        //Iterate over array
+        for(int i = 0; i < nums.length; i++){
+        //If current array element's difference from target exists within our HashMap return them as results
+            if(Pairs.get(nums[i]) != null){
+                results[0] = Pairs.get(nums[i]);
+                results[1] = i;
+                return results;
             }
-            arr.put(target - x,i);
+        //If not store the difference within the HashMap along with it's index.
+            Pairs.put(target-nums[i],i);
         }
-        System.out.print(arr.get(100));
-        return nums;
+        return results;
     }
 }
