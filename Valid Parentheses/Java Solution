@@ -1,0 +1,58 @@
+Time Complexity : O(N)
+Space Complexity : O(N)
+
+import java.util.HashMap;
+
+class Solution {
+    public boolean isValid(String s) {
+        
+        //Declare Stack to store current open characters
+        Stack<Character> stack = new Stack<Character>();
+        
+        for(char i: s.toCharArray()){
+            
+              //If the stack is not empty, check for valid pairings
+              if(!stack.empty()){
+                
+                //If a closing character is detected but it is not the most recent open                     char return false
+                if(i == ')' && stack.peek() != '(' )
+                    return false;
+            
+                if(i == '}' && stack.peek() != '{' )
+                    return false;
+            
+                if(i == ']' && stack.peek() != '[' )
+                    return false;
+            
+            //If the char got closed successfully, pop top element from stack and skip to               next char
+            if(i == ')' && stack.peek() == '(' )
+            {
+                stack.pop();
+                continue;
+            }
+            
+                if(i == '}' && stack.peek() == '{')
+            {
+                stack.pop();
+                continue;
+            }
+            
+                if(i == ']' && stack.peek() == '[')
+            {
+                stack.pop();
+                continue;
+            }
+               }
+            
+             stack.push(i);
+                    
+        }
+        //If the stack no longer contains any open characters return true.
+        if(stack.empty())
+            return true;
+        
+        return false;
+        
+    
+    }
+}
