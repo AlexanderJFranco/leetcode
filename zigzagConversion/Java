@@ -1,0 +1,51 @@
+//Time complexity : O(n) 
+//Space Complexity : O(n) 
+
+import java.util.HashMap;
+
+class Solution {
+    public String convert(String s, int numRows) {
+        //Set flag for characters in diagonal pathing
+        boolean diagonal = false;
+        // Set index
+        int index =1;        
+        if(numRows == 1)
+            return s;
+        
+        // Declare and initialize solution HashMap
+        HashMap<Integer,String> zigzag = new HashMap<Integer,String>();
+        for(int i = 1; i <= numRows; i++){
+            zigzag.put(i,"");
+        }
+        
+        //Iterate through string and assign characters with rows index to hashmap
+        for(char c : s.toCharArray() ){
+           
+            if(diagonal == true){
+                zigzag.replace(index,zigzag.get(index)+ String.valueOf(c));
+                index --;
+            }
+            else{
+                 zigzag.replace(index,zigzag.get(index)+ String.valueOf(c));
+                 index++;
+            }    
+                
+            
+            if(index == 1)
+                diagonal = false;
+            
+            //When maximum number of rows are reached begin diagonal path
+            if(index == numRows)
+                diagonal = true;
+            
+        }
+        //Concatenate HashMap values to empty string
+        String result = "";
+        for(int i = 1; i<= numRows; i++){
+            result += zigzag.get(i);
+        }
+        
+        //return results
+        return result;
+    }
+}
